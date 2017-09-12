@@ -127,4 +127,4 @@ while True:
         print("Your final count is {} coins.".format(count))
         break
     else:
-        print("Enter yes or no.")
+        print("Please enter yes or no.")
