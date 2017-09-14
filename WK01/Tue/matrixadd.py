@@ -8,4 +8,4 @@ size = len(m1)
 for i in range(size):
     for j in range(size):
         m3[i][j] = m1[i][j] + m2[i][j]
-print("\nThe result is: \n",m3)
+print("The result is:",m3)
