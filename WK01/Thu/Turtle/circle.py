@@ -1,4 +1,4 @@
-# Exercise 1    #7 A circlef
+# Exercise 1    #7 A circle
 
 from turtle import *
 
