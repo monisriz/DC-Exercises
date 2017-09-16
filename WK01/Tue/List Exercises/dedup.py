@@ -13,7 +13,7 @@ for i in range(listsize):
 print("Sorted original list:\t\t",numlist)
 print("New list without duplicates:\t",newlist)
 
-# ==Better way==
+# ==A better way==
 # newlist = []
 # for num in numlist:
 #     if num not in newlist:
@@ -21,5 +21,5 @@ print("New list without duplicates:\t",newlist)
 # print("Original list:\t\t",numlist)
 # print("Without duplicates:\t",newlist)
 
-# ==Even better==
+# ==An even better way==
 # print(list(set(numlist)))

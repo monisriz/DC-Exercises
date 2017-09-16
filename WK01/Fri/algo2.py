@@ -1,4 +1,4 @@
-# Algorithm 2   Sum of multiples below 1000
+# Algorithm 2   Sum of all multiples of 3 or 5 below 1000
 
 # Note: Can be defined in a function and then
 # passed any number when invoking the said function.

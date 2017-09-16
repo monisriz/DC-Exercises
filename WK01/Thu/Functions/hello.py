@@ -1,6 +1,6 @@
 # #1 Hello
 
 def greet(name):
-    print("Hello", name)
+    print("Hello {}!".format(name))
 
-greet("Joe")
+greet("Dave")

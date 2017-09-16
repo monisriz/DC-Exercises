@@ -1,4 +1,4 @@
-# #2 y = x + 1
+# #7 Degree conversion
 
 import matplotlib.pyplot as plot
 

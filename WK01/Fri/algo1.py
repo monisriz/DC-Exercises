@@ -1,4 +1,4 @@
-# Algorithm 1   FizzBuzz
+# Algorithm 1   FizzBuzz Test
 # Conditions:
 # a. If a number is a multiple of 3 AND 5, print FizzBuzz.
 # b. If a number is a multiple of 3, print Fizz.
