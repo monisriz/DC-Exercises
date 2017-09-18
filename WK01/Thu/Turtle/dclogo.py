@@ -17,7 +17,7 @@ t1.speed(0)         # max speed for faster animation
 t2.speed(0)         # max speed for faster animation
 
 t1.goto(-370,90)    # set starting position for left turtle
-t2.goto(370, -40)   # set starting position for right turtle
+t2.goto(370, -50)   # set starting position for right turtle
 
 t2.left(180)        # flip right turtle to face the correct way
 
