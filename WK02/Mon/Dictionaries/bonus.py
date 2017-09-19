@@ -1,4 +1,4 @@
-# Bonus challenge - Print top 3 values of the letter count
+# Bonus challenge - print top 3 values of the letter count
 
 import string
 count = {}

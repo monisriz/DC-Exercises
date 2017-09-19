@@ -1,4 +1,4 @@
-# Word summary
+# Word summary - print a count of each word in the string
 
 import string
 
