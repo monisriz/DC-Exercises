@@ -1,0 +1,80 @@
+.topleft {
+  width: 33.33%;
+  height: 33.33%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  background-color: red;
+}
+
+.topmid {
+  width: 33.33%;
+  height: 33.33%;
+  position: absolute;
+  top: 0%;
+  left: 33.33%;
+  background-color: orange;
+}
+
+.topright {
+  width: 33.33%;
+  height: 33.33%;
+  position: absolute;
+  top: 0%;
+  left: 66.66%;
+  background-color: yellow;
+}
+
+.midleft {
+  width: 33.33%;
+  height: 33.33%;
+  position: absolute;
+  top: 33.33%;
+  left: 0%;
+  background-color: pink;
+}
+
+.midmid {
+  width: 33.33%;
+  height: 33.33%;
+  position: absolute;
+  top: 33.33%;
+  left: 33.33%;
+  background-color: grey;
+}
+
+.midright {
+  width: 33.33%;
+  height: 33.33%;
+  position: absolute;
+  top: 33.33%;
+  left: 66.66%;
+  background-color: green;
+}
+
+.botleft {
+  width: 33.33%;
+  height: 33.33%;
+  position: absolute;
+  top: 66.66%;
+  left: 0%;
+  background-color: skyblue;
+}
+
+.botmid {
+  width: 33.33%;
+  height: 33.33%;
+  position: absolute;
+  top: 66.66%;
+  left: 33.33%;
+  background-color: teal;
+}
+
+.botright {
+  width: 33.33%;
+  height: 33.33%;
+  position: absolute;
+  top: 66.66%;
+  left: 66.66%;
+  background-color: magenta;
+}
