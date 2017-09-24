@@ -1,0 +1,80 @@
+.headleft {
+  background-color: black;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 20%;
+  height: 10%;
+  padding-left: 50px;
+}
+.headmid {
+  background-color: black;
+  position: absolute;
+  top: 0%;
+  left: 20%;
+  width: 60%;
+  height: 10%;
+}
+
+.headright {
+  background-color: black;
+  position: absolute;
+  top: 0%;
+  left: 80%;
+  width: 20%;
+  height: 10%;
+  padding-right: 50px;
+}
+
+.headright > a {
+  display: block;
+  position: relative;
+  color: grey;
+  text-decoration: none;
+  margin: auto;
+  top: 40%;
+  left: 20%
+
+}
+
+.headleft > img {
+  display: block;
+  top: 20%;
+  float: left;
+  position: relative;
+}
+
+.headleft > #topbut {
+  display: block;
+  width: 70px;
+  height: 20px;
+  background-color: black;
+  color: grey;
+  border: 1px solid grey;
+  border-radius: 10px;
+  top: 30%;
+  position: relative;
+  float: left;
+  }
+
+
+
+.content {
+  display: block;
+  position: absolute;
+  width: 70%;
+  height: auto;
+  top: 10%;
+  left: 15%;
+  text-align: center;
+  }
+
+h1 {
+  color: black;
+  font-size: 2em;
+  text-align: left;
+}
+p {
+  font-size: 1.5em;
+  text-align: left;
+}
