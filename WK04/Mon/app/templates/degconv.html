@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <title>Celsius to Fahrenheit</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row form-group" style="margin-top: 20%;">
+        <div class="col-md-3 mx-auto">
+          <form action="" method="post">
+            <div class="input-group">
+              <input type="number" class="form-control" placeholder="Temperature in Celsius" required name='celsius' value="{{celsius}}">
+              <span class="input-group-addon">°C</span>
+            </div>
+            <div style="margin:0 auto">
+              <button class="btn btn-primary" type="submit">Convert to Fahrenheit</button>
+            </div>
+          <br>
+          <div class="input-group">
+          <input class="form-control" type="text" placeholder="Result here.." readonly name="fahrenheit" value="{{ fahrenheit }}">
+          <span class="input-group-addon">°F</span>
+
+        </form>
+          <!-- <h3>{{ celsius }}°C is equal to {{ fahrenheit }} °F. </h3> -->
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+  </body>
+</html>
