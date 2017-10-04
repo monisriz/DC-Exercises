@@ -20,7 +20,8 @@ SELECT tech.name FROM tech
   ON project_uses_tech.tech_id = tech.id
   WHERE project_uses_tech.project_id IS NULL;
 
---  4.  Based on the previous query, get the count of the number of techs used by each project.
+--  4.  Based on the previous query, get the count of the number of techs
+--			used by each project.
 
 SELECT project.name, count(project_uses_tech.project_id)
   AS techs_used FROM project
@@ -44,3 +45,14 @@ AS project_count FROM tech
 LEFT OUTER JOIN project_uses_tech
 ON project_uses_tech.tech_id = tech.id
 GROUP BY tech.name ORDER BY project_count;
+
+--  7.  List all projects along with each technology used by it.
+--      You will need to do a three-way join.
+
+SELECT project.name AS project_name, tech.name AS tech_used
+  FROM project
+	LEFT OUTER JOIN project_uses_tech
+  ON project_uses_tech.project_id = project.id
+	LEFT OUTER JOIN tech
+  ON project_uses_tech.tech_id = tech.id
+  ORDER BY project.name;
