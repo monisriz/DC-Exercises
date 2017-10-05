@@ -123,3 +123,12 @@ ON project_uses_tech.project_id = project.id
 GROUP BY tech.name ORDER BY count DESC;
 
 --	14.	What is the average number of techs used by a project?
+
+SELECT AVG(COUNT)
+FROM (SELECT project.name, Count(project_uses_tech.tech_id)
+FROM project
+LEFT OUTER JOIN project_uses_tech
+ON project_uses_tech.project_id = project.id
+LEFT OUTER JOIN tech
+ON project_uses_tech.tech_id = tech.id
+GROUP BY project.name) AS avg;
