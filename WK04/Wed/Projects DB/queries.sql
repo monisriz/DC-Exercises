@@ -3,8 +3,18 @@
 --  1.  What are all projects that use JavaScript?
 
 SELECT project.name FROM project
-	JOIN project_uses_tech ON project_uses_tech.project_id = project.id
-	JOIN tech ON project_uses_tech.tech_id = tech.id WHERE tech.id = 3;
+	JOIN project_uses_tech
+	ON project_uses_tech.project_id = project.id
+	JOIN tech
+	ON project_uses_tech.tech_id = tech.id
+	WHERE tech.name = 'JavaScript';
+
+-- Another way to do the above query:
+
+SELECT project.name FROM project, tech, project_uses_tech
+	WHERE project.id = project_uses_tech.project_id
+	AND tech.id = project_uses_tech.tech_id
+	AND tech.name = 'JavaScript';
 
 --  2.  What are all technologies used by the Personal Website?
 
@@ -56,3 +66,5 @@ SELECT project.name AS project_name, tech.name AS tech_used
 	LEFT OUTER JOIN tech
   ON project_uses_tech.tech_id = tech.id
   ORDER BY project.name;
+
+--	8.
