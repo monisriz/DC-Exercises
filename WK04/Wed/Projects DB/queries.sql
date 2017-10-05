@@ -75,3 +75,21 @@ SELECT DISTINCT(tech.name)
 	AND project_uses_tech.project_id IS NOT NULL;
 
 --	9.	List all the distinct techs that are not used by any projects.
+
+SELECT DISTINCT(tech.name)
+FROM project
+RIGHT OUTER JOIN project_uses_tech
+ON project_uses_tech.project_id = project.id
+RIGHT OUTER JOIN tech
+ON project_uses_tech.tech_id = tech.id
+WHERE project_uses_tech.project_id IS NULL GROUP BY tech.name;
+
+--	10.	List all the distinct projects that use at least one tech.
+
+SELECT DISTINCT(project.name)
+FROM project, project_uses_tech, tech
+WHERE project_uses_tech.tech_id = tech.id
+AND project_uses_tech.project_id = project.id
+GROUP BY project.name;
+
+--	11.
