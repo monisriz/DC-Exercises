@@ -92,4 +92,22 @@ WHERE project_uses_tech.tech_id = tech.id
 AND project_uses_tech.project_id = project.id
 GROUP BY project.name;
 
---	11.
+--	11.	List all the distinct projects that use no tech.
+
+SELECT DISTINCT(project.name)
+FROM project
+LEFT OUTER JOIN project_uses_tech
+ON project_uses_tech.project_id = project.id
+LEFT OUTER JOIN tech
+ON project_uses_tech.tech_id = tech.id
+WHERE project_uses_tech.tech_id IS NULL;
+
+--	12.	Order the projects by how many tech it uses.
+
+SELECT project.name, Count(project_uses_tech.tech_id)
+FROM project
+LEFT OUTER JOIN project_uses_tech
+ON project_uses_tech.project_id = project.id
+LEFT OUTER JOIN tech
+ON project_uses_tech.tech_id = tech.id
+GROUP BY project.name ORDER BY count DESC;
