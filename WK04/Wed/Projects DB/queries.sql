@@ -110,7 +110,7 @@ LEFT OUTER JOIN project_uses_tech
 ON project_uses_tech.project_id = project.id
 LEFT OUTER JOIN tech
 ON project_uses_tech.tech_id = tech.id
-GROUP BY project.name ORDER BY count DESC
+GROUP BY project.name ORDER BY count DESC;
 
 --	13.	Order the tech by how many projects use it.
 
