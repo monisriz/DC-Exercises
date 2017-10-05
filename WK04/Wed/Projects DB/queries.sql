@@ -67,4 +67,11 @@ SELECT project.name AS project_name, tech.name AS tech_used
   ON project_uses_tech.tech_id = tech.id
   ORDER BY project.name;
 
---	8.
+--	8.	List all the distinct techs that are used by at least one project.
+
+SELECT DISTINCT(tech.name)
+	FROM tech, project_uses_tech, project
+	WHERE project_uses_tech.tech_id = tech.id
+	AND project_uses_tech.project_id IS NOT NULL;
+
+--	9.	List all the distinct techs that are not used by any projects.
