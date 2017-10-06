@@ -61,3 +61,78 @@ SELECT restaurant.name, count(review.stars) AS five_stars_count FROM restaurant,
 --      (category name, average star rating)
 
 SELECT restaurant.category, CAST(AVG(review.stars) AS DECIMAL(10,2)) AS avg_stars FROM restaurant, review WHERE restaurant.id = review.restaurant_id GROUP BY restaurant.category;
+
+
+--------------------------------------------
+
+-- EXPLICIT JOINS
+
+--1
+SELECT *
+FROM review
+WHERE restaurant_id = 3;
+--2
+SELECT *
+FROM review
+INNER JOIN restaurant
+ON review.restaurant_id = restaurant.id
+WHERE restaurant.name = 'Pappadeaux';
+--3
+SELECT *
+FROM review
+INNER JOIN reviewer
+ON review.reviewer_id = reviewer.id
+WHERE reviewer.name = 'Paul';
+--4
+SELECT restaurant.name, review.review_text
+FROM review
+INNER JOIN restaurant
+ON review.restaurant_id = restaurant.id;
+--5
+SELECT restaurant.name, AVG(review.stars)
+FROM restaurant
+INNER JOIN review
+ON restaurant.id = review.restaurant_id
+GROUP BY restaurant.name;
+--6
+SELECT restaurant.name, COUNT(review.restaurant_id)
+FROM restaurant
+INNER JOIN review
+ON restaurant.id = review.restaurant_id
+GROUP BY restaurant.name;
+--7
+SELECT restaurant.name, review.review_text, reviewer.name
+FROM restaurant
+INNER JOIN review
+ON restaurant.id = review.restaurant_id
+INNER JOIN reviewer
+ON review.reviewer_id = reviewer.id;
+--8
+SELECT reviewer.name, AVG(review.stars)
+FROM reviewer
+INNER JOIN review
+ON reviewer.id = review.reviewer_id
+GROUP BY reviewer.name;
+--9
+SELECT reviewer.name, MIN(review.stars)
+FROM reviewer
+INNER JOIN review
+ON reviewer.id = review.reviewer_id
+GROUP BY reviewer.name;
+--10
+SELECT restaurant.category, COUNT(restaurant.id)
+FROM restaurant
+GROUP BY restaurant.category;
+--11
+SELECT restaurant.name, COUNT(review.id)
+FROM restaurant
+INNER JOIN review
+ON restaurant.id = review.restaurant_id
+WHERE review.stars = 5
+GROUP BY restaurant.name;
+--12
+SELECT restaurant.category, AVG(review.stars)
+FROM restaurant
+INNER JOIN review
+ON restaurant.id = review.restaurant_id
+GROUP BY restaurant.category;
