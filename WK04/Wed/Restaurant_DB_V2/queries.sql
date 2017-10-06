@@ -1,3 +1,5 @@
+-- IMPLICIT JOINS
+
 --  1.  List all the reviews for a given restaurant given a specific
 --      restaurant ID.
 
