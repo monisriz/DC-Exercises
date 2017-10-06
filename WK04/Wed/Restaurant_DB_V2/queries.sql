@@ -63,7 +63,9 @@ SELECT restaurant.name, count(review.stars) AS five_stars_count FROM restaurant,
 SELECT restaurant.category, CAST(AVG(review.stars) AS DECIMAL(10,2)) AS avg_stars FROM restaurant, review WHERE restaurant.id = review.restaurant_id GROUP BY restaurant.category;
 
 
---------------------------------------------
+--
+--
+--
 
 -- EXPLICIT JOINS
 
