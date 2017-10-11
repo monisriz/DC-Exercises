@@ -1,8 +1,8 @@
 function totalAmount(billAmt, svcLevel) {
-  if (svcLevel == 'good') {
+  if (svcLevel === 'good') {
     tipLevel = 0.20;
   }
-  else if (svcLevel == 'fair') {
+  else if (svcLevel === 'fair') {
     tipLevel = 0.15;
   }
   else {

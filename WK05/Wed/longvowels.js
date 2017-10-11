@@ -4,7 +4,7 @@ function longvowels(origString) {
 
   for (var i = 0; i < userString.length; i++) {
     for (var j = 0; j < vowels.length; j++) {
-      if (userString[i] == vowels[j] && userString[i+1] == userString[i]) {
+      if (userString[i] === vowels[j] && userString[i+1] === userString[i]) {
         var newString = userString.replace(userString[i], vowels[j].repeat(4));
       }
     }
