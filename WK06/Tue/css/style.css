@@ -1,0 +1,14 @@
+body {
+  margin-left: auto 0;
+  overflow-x: hidden;
+}
+
+.thumb {
+  width: 500px;
+}
+
+/* fluid 5 columns */
+.grid-sizer,
+.grid-item { width: 33.33333%; }
+/* 2 columns */
+.grid-item--width2 { width: 40%; }

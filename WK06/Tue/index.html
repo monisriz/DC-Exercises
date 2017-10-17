@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale-1.0, user-scalable=no, shrink-to-fit=no">
+    <title>JQuery Plugin Test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link href="css/lightbox.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <div class="grid">
+      <!-- width of .grid-sizer used for columnWidth -->
+      <div class="grid-sizer"></div>
+      <div class="grid-item"><a href="/images/ali4_768w.jpg" data-lightbox="ali" data-title="My caption"><img src="/images/ali4_576w.jpg" alt="" class="thumb"></a></div>
+      <div class="grid-item grid-item--width2"></div>
+
+      <div class="grid-sizer"></div>
+      <div class="grid-item"><a href="/images/ali2_1920w.jpg" data-lightbox="ali" data-title="My caption"><img src="/images/ali2_576w.jpg" alt="" class="thumb"></a></div>
+      <div class="grid-item grid-item--width2"></div>
+
+      <div class="grid-sizer"></div>
+      <div class="grid-item"><a href="/images/ali3_1920w.jpg" data-lightbox="ali" data-title="My caption"><img src="/images/ali3_576w.jpg" alt="" class="thumb"></a></div>
+      <div class="grid-item grid-item--width2"></div>
+
+      <div class="grid-sizer"></div>
+      <div class="grid-item"><a href="/images/ali1_1920w.jpg" data-lightbox="ali" data-title="My caption"><img src="/images/ali1_576w.jpg" alt="" class="thumb"></a></div>
+      <div class="grid-item grid-item--width2"></div>
+
+      <div class="grid-sizer"></div>
+      <div class="grid-item"><a href="/images/ali5_1920w.jpg" data-lightbox="ali" data-title="My caption"><img src="/images/ali5_576w.jpg" alt="" class="thumb"></a></div>
+      <div class="grid-item grid-item--width2"></div>
+
+
+      <div class="grid-sizer"></div>
+      <div class="grid-item"><a href="/images/ali6_1920w.jpg" data-lightbox="ali" data-title="My caption"><img src="/images/ali6_576w.jpg" alt="" class="thumb"></a></div>
+      <div class="grid-item grid-item--width2"></div>
+
+      <div class="grid-sizer"></div>
+      <div class="grid-item"><a href="/images/ali7_1920w.jpg" data-lightbox="ali" data-title="My caption"><img src="/images/ali7_576w.jpg" alt="" class="thumb"></a></div>
+      <div class="grid-item grid-item--width2"></div>
+
+
+      <div class="grid-sizer"></div>
+      <div class="grid-item"><a href="/images/ali8_1920w.jpg" data-lightbox="ali" data-title="My caption"><img src="/images/ali8_576w.jpg" alt="" class="thumb"></a></div>
+      <div class="grid-item grid-item--width2"></div>
+
+      <div class="grid-sizer"></div>
+      <div class="grid-item"><a href="/images/ali10_1920w.jpg" data-lightbox="ali" data-title="My caption"><img src="/images/ali10_576w.jpg" alt="" class="thumb"></a></div>
+      <div class="grid-item grid-item--width2"></div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="js/lightbox.js"></script>
+    <script src="js/masonry.pkgd.js"></script>
+    <script>
+      lightbox.option({
+        'resizeDuration': 2000,
+        'wrapAround': true
+      })
+    </script>
+
+    <script>
+      $('.grid').masonry({
+        // options
+        columnWidth: '.grid-sizer',
+        itemSelector: '.grid-item',
+        percentPosition: true
+      })
+    </script>
+
+  </body>
+</html>
