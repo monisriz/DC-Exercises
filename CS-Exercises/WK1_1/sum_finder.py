@@ -12,3 +12,5 @@ if __name__ == "__main__":
     main = sum_finder()
     result = main.main(50000000)
     print(result)
+
+# Find sum of all numbers less than 50000000 which are divisible by 3 or 5.
