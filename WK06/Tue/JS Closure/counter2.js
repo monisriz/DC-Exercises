@@ -10,7 +10,7 @@ function mainCounter (x) {
   return counter;
 };
 
-var count1 = mainCounter(4);
+var count = mainCounter(4);
 
-console.log(count1());
-console.log(count1());
+console.log(count());
+console.log(count());
