@@ -4,7 +4,7 @@ $('#stand-button').prop('disabled', true);
 var dealerhand;
 var playerhand;
 var deck = null;
-
+//need to switch to a better way to do this
 function generate_deck () {
   var d = [
   //clubs
