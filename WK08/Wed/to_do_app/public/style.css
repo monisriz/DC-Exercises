@@ -1,0 +1,36 @@
+html, body {
+  height: 100%;
+}
+h1, h2, h3, h4, h5 {
+  font-weight: lighter;
+}
+
+/*.container-fluid {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}*/
+
+.todoform {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todoitem {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.status {
+  text-align: left;q
+}
+.statusicon {
+  width: 10%;
+  mix-blend-mode: multiply;
+  cursor: default;
+  outline: none;
+}

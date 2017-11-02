@@ -1,0 +1,40 @@
+<div class="container-fluid">
+
+<!-- Todo form -->
+  <div class="row todoform mx-auto mt-5 text-center">
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <form action="/add" method="POST">
+        <div class="form-group">
+          <input type="text" class="form-control" name="new_todo" placeholder="What do you want to do?">
+        </div>
+        <button class="btn btn-primary" type="submit" name="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+<!-- Todo db query results   -->
+  <div class="result-container mx-auto mt-5 text-center">
+
+    {{#each todolist}}
+      <div class="row todoitem">
+
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 description">
+          <h4>{{description}}</h4>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 status">
+          <form action="/update/{{id}}" method="POST">
+            {{#if done}}
+              <input type="image" src="../static/true.png" border="0" alt="Completed" class="statusicon true"/>
+            {{else}}
+              <input type="image" src="../static/false.png" border="0" alt="Not Completed" class="statusicon false"/>
+            {{/if}}
+          </form>
+        </div>
+
+      </div>
+    {{/each}}
+
+  </div>
+
+</div>
