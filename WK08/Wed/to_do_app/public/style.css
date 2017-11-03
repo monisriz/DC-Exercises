@@ -5,18 +5,17 @@ h1, h2, h3, h4, h5 {
   font-weight: lighter;
 }
 
-/*.container-fluid {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}*/
+
 
 .todoform {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.todoinput, .todosubmit {
+  font-weight: lighter;
 }
 
 .todoitem {
@@ -26,7 +25,7 @@ h1, h2, h3, h4, h5 {
   align-items: center;
 }
 .status {
-  text-align: left;q
+  text-align: left;
 }
 .statusicon {
   width: 10%;
