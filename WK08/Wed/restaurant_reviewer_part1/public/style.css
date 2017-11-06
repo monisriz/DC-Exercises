@@ -1,0 +1,17 @@
+html, body {
+  height: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: lighter;
+}
+
+.searchform {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchinput, .searchsubmit {
+  font-weight: lighter;
+}
