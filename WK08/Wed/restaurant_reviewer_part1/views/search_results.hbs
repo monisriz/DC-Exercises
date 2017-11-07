@@ -1,0 +1,26 @@
+<div class="container-fluid">
+
+
+  <div class="result-container mx-auto mt-5 text-center">
+    <div class="row restaurantHead">
+      <div class="col">
+        <h4><strong>Restaurant Name</strong></h4>
+      </div>
+
+    </div>
+
+    <ul>
+      {{#each searchResults}}
+        <div class="row restaurantList">
+            <div class="col restaurantName">
+              <h4>
+                <a href="/restaurant/{{id}}">{{name}}</a>
+              </h4>
+            </div>
+        </div>
+      {{/each}}
+    </ul>
+
+  </div>
+
+</div>
