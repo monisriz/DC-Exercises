@@ -17,7 +17,8 @@ io.on('connection', function(client){
 
   client.on('draw', function (data) {
     console.log('Coords', data[0], data[1]);
-    console.log('Color', data[2])
+    console.log('Color', data[2]);
+    console.log('Pen Width', data[3]);
     io.emit('do-draw', data);
   });
 });
