@@ -9,20 +9,16 @@ app.set('view engine', 'hbs');
 app.use('/static', express.static('public'));
 
 app.get('/', function (request, response) {
-  response.render('draw.hbs');
-});
-
-
-app.get('/paint', function (request, response) {
   response.render('paint.hbs');
 });
 
 io.on('connection', function(client){
   console.log('CONNECTED');
 
-  client.on('draw', function (coords) {
-    console.log('Coords', coords);
-    io.emit('do-draw', coords);
+  client.on('draw', function (data) {
+    console.log('Coords', data[0], data[1]);
+    console.log('Color', data[2])
+    io.emit('do-draw', data);
   });
 });
 

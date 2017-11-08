@@ -3,58 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title>Draw Together</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../static/style.css">
   </head>
   <body>
-    <canvas width="1375" height="760" style="border:1px solid black;"></canvas>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col drawingBoard">
+          <canvas width="1000px" height="600px"></canvas>
+        </div>
+
+        <div class="col colorPicker">
+          <input class="color no-alpha form-control" placeholder="Choose the color to use">
+        </div>
+      </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <script src="/socket-io/socket.io.js"></script>
+    <script src="../static/frontend.js"></script>
+    <script src="../static/jqColorPicker.min.js"></script>
     <script type="text/javascript">
-      var server = io();
-      var canvas = document.querySelector('canvas');
-      var ctx = canvas.getContext('2d');
-
-      var mouse_down = false;
-      var past;
-      var current;
-
-      canvas.addEventListener('mousedown', function (event) {
-        mouse_down = true;
-        console.log('down', event.offsetX, event.offsetY);
-      });
-      canvas.addEventListener('mouseup', function (event) {
-        mouse_down = false;
-        past = null;
-        console.log('up', event.offsetX, event.offsetY);
-      });
-      canvas.addEventListener('mousemove', function (event) {
-        if (mouse_down) {
-          console.log('move', event.offsetX, event.offsetY);
-
-          current = [event.offsetX, event.offsetY];
-          if (past) {
-            send_draw(past, current);
-          }
-
-          past = [event.offsetX, event.offsetY];
-        }
-      });
-      function send_draw (past, current) {
-        server.emit('draw', [past, current]);
-      }
-
-      server.on('do-draw', function (coords) {
-        draw(coords[0], coords[1]);
-      });
-
-      function draw (past, current) {
-        ctx.moveTo(past[0], past[1]);
-        ctx.quadraticCurveTo(
-          past[0], past[1],
-          current[0], current[1]
-        );
-        ctx.stroke();
-        ctx.closePath();
-      }
-
+        $('.color').colorPicker();
     </script>
   </body>
 </html>
