@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Canvas Exercise</title>
+  </head>
+  <body>
+    <canvas width="1350" height="700"></canvas>
+
+    <script type="text/javascript">
+      var canvas = document.querySelector('canvas');
+      var ctx = canvas.getContext('2d');
+
+      ctx.strokeRect(30, 30, 100, 50);
+
+      ctx.strokeRect(30, 100, 100, 50);
+
+      ctx.strokeRect(150, 100, 100, 50);
+
+      ctx.strokeRect(30, 170, 100, 50);
+
+      ctx.strokeRect(40, 180, 80, 30);
+
+      ctx.moveTo(130, 290);
+
+      ctx.arc(80, 290, 50, 0, 2*Math.PI);
+      ctx.stroke();
+
+      ctx.moveTo(130, 410);
+
+      ctx.beginPath();
+      ctx.arc(80, 410, 50, 0, 2*Math.PI);
+      ctx.strokeStyle = "blue";
+      ctx.stroke();
+
+      ctx.moveTo(120, 400);
+
+      ctx.beginPath();
+      ctx.arc(80, 410, 40, 0, 2*Math.PI);
+      ctx.strokeStyle = "red";
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(800, 350, 300, 0, 2*Math.PI);
+      ctx.fillStyle = "blue";
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.lineWidth = 10;
+      ctx.arc(800, 350, 220, 0, 2*Math.PI);
+      ctx.strokeStyle = "white";
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(800, 350, 216, 0, 2*Math.PI);
+      ctx.fillStyle = "yellow";
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.lineWidth = 10;
+      ctx.arc(800, 350, 136, 0, 2*Math.PI);
+      ctx.strokeStyle = "white";
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(800, 350, 132, 0, 2*Math.PI);
+      ctx.fillStyle = "red";
+      ctx.fill();
+    </script>
+  </body>
+</html>

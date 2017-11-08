@@ -14,6 +14,8 @@ app.get('/', function (request, response) {
 });
 
 
+
+
 io.on('connection', function(client){
   console.log('USER CONNECTED');
 
