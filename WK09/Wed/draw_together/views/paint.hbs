@@ -10,29 +10,31 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-          <canvas width="1000px" height="700px" class="drawingBoard"></canvas>
+          <canvas class="drawingBoard" width="1000px" height="700px"></canvas>
 
         <div class="col optionsPane">
-          <div class="row colorPicker">
-            <!-- <button class="color no-alpha form-control btn dropdown-toggle" style="background-color:black;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Pen color
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="display:none">
-            </div> -->
-            <input class="color no-alpha currentColor form-control" placeholder="Pen color">
+          <div class="row colorPick">
+            <input class="color no-alpha currentColor form-control" placeholder="Pick pen color" readonly>
           </div>
 
           <div class="row penSizeSlider">
             <div id="slidecontainer">
-              <input type="range" min="1" max="40" value="1" class="slider" id="myRange">
-              <p class="currentPen">Pen size: <span id="penSize"></span></p>
+              <input class="form-control currentPen" id="penSize" readonly>
+              <input type="range" min="1" max="40" value="1" placeholder="Pen size: 1" class="slider" id="myRange">
             </div>
           </div>
 
+          <!-- <div class="row penSizeSlider">
+            <div id="slidecontainer">
+              <input type="range" min="1" max="40" value="1" class="slider" id="myRange">
+              <p class="currentPen">Pen size: <span id="penSize"></span></p>
+            </div>
+          </div> -->
+
         </div>
       </div>
-      <div class="row footer">
-        DrawTogether
+      <div class="row footer" style="text-align:center;">
+        <h2>D r a w - T o g e t h e r</h2>
       </div>
 
     </div>
@@ -48,11 +50,11 @@
     <script type="text/javascript">
       var slider = document.getElementById("myRange");
       var output = document.getElementById("penSize");
-      output.innerHTML = slider.value; // Display the default slider value
+      output.value = "Pen size: " + slider.value; // Display the default slider value
 
       // Update the current slider value (each time you drag the slider handle)
       slider.oninput = function() {
-        output.innerHTML = this.value;
+        output.value = "Pen size: " + this.value;
       }
     </script>
   </body>
