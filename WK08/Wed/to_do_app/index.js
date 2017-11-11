@@ -25,8 +25,11 @@ app.get('/todos', function (request, response, next) {
 
 app.post('/add', function (request, response, next) {
   var description = request.body.new_todo;
-  let update = "INSERT INTO task VALUES(default, $1, null)";
-  db.any(update, description)
+  var enddate = request.body.end_date;
+  var priority = request.body.priority;
+
+  let update = "INSERT INTO task VALUES(default, $1, $2, null, $3)";
+  db.any(update, [description, enddate, priority])
     .then(function() {
       response.redirect('/todos');
     })
@@ -38,11 +41,11 @@ app.post('/update/:id', function (request, response, next) {
   let query = "SELECT * FROM task WHERE id = $1";
   db.one(query, id)
     .then(function(task) {
-      if (task.done) {
-        var update = "UPDATE task SET done = FALSE WHERE id = $1";
+      if (task.status) {
+        var update = "UPDATE task SET status = FALSE WHERE id = $1";
       }
       else {
-        var update = "UPDATE task SET done = TRUE WHERE id = $1";
+        var update = "UPDATE task SET status = TRUE WHERE id = $1";
       };
       return db.any(update, id);
     })

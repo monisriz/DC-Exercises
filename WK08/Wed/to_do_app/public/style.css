@@ -12,19 +12,20 @@ h1, h2, h3, h4, h5 {
 
 .todoform {
   height: 100%;
-  display: flex;
   justify-content: center;
   align-items: center;
+  display: none;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.todoinput, .todosubmit {
+.todoinput, .todosubmit, .tododate {
   font-weight: lighter;
 }
 
 .todoitem {
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .status {
