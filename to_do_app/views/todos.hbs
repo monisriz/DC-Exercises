@@ -1,0 +1,55 @@
+<div class="container-fluid">
+
+<div class="taskcreatediv col text-center mt-5">
+  <button type="button" class="btn btn-primary taskcreatebtn btn-lg" name="button">Create a Task</button>
+</div>
+<!-- Todo form -->
+  <div class="row mt-5">
+    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+      <form action="/add" method="POST" class="todoform">
+        <div class="form-group">
+          <input type="text" class="form-control form-control-lg todoinput text-center" name="new_todo" placeholder="What do you want to do?" maxlength="50" required>
+        </div>
+        <div class="form-inline text-center">
+          <input class="form-control form-control-sm tododate col-5 text-center mb-2 mr-sm-2 mb-sm-0" placeholder="Target date" id="datepicker" name="end_date" data-toggle="datepicker">
+          <div class="priority">
+            <select class="form-control todopriority mb-2 mr-sm-2 mb-sm-0" name="priority" id="sel1" style="color:grey">
+              <option hidden>Priority</option>
+              <option value=High>High</option>
+              <option value=Medium>Medium</option>
+              <option value=Low>Low</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary todosubmit mt-3" type="submit" name="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+<!-- Todo db query results   -->
+  <div class="result-container mx-auto mt-5 text-center">
+
+    {{#each todolist}}
+      <div class="row todoitem">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 description" style="text-align:right">
+          <h4>{{description}}</h4>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 status">
+          <form action="/update/{{id}}" method="POST">
+            {{#if status}}
+              <input type="image" src="../static/true.png" border="0" alt="Completed" class="statusicon true"/>
+            {{else}}
+              <input type="image" src="../static/false.png" border="0" alt="Not Completed" class="statusicon false"/>
+            {{/if}}
+          </form>
+        </div>
+
+      </div>
+      {{else}}
+      <h2>Add a To-Do item</h2>
+    {{/each}}
+
+  </div>
+
+</div>
