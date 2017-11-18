@@ -4,6 +4,8 @@ var deck;
 
 // blackjack buttons - bet, cancel, chip, deal, hit, stand
 var chip = document.getElementsByClassName("chipButton");
+var chipbuttons = document.getElementById("chipbuttons");
+var controlbuttons = document.getElementById("controlbuttons");
 var bet = document.getElementById("bet-button");
 var cancel = document.getElementById("cancel-button");
 var deal = document.getElementById("deal-button");
@@ -126,12 +128,16 @@ var stand = document.getElementById("stand-button");
 
     Array.from(chip).forEach(function(element) {
       element.addEventListener("click", function() {
-        document.getElementById("bet-button").style.display = "inline-block";
-        document.getElementById("cancel-button").style.display = "inline-block";
-        // document.getElementById("chipButtons").style.display = "none";
-        Array.from(chip).forEach(function(element){
-            element.style.display = "none";
-        });
+        chipbuttons.style.display = "none";
+        controlbuttons.style.display = "flex";
+        bet.style.display = "";
+        cancel.style.display = "";
+        deal.style.display = "none";
+        hit.style.display = "none";
+        stand.style.display = "none";
+        // Array.from(chip).forEach(function(element){
+        //     element.style.display = "none";
+        // });
       })
     });
 
@@ -141,14 +147,15 @@ var stand = document.getElementById("stand-button");
         bankAmount = parseInt(document.getElementById("bank-amount").innerHTML);
         player.bet = betAmount;
         player.bank = bankAmount;
-        document.getElementById("bet-button").style.display = "none";
-        document.getElementById("cancel-button").style.display = "none";
-        document.getElementById("deal-button").style.display = "inline-block";
         document.getElementById("messages").innerHTML = "Your bet amount: $" + player.bet;
+        chipbuttons.style.display = "none";
+        bet.style.display = "none";
+        cancel.style.display = "none";
+        deal.style.display = "";
 
-        Array.from(chip).forEach(function(element) {
-            element.style.display = "none";
-          })
+        // Array.from(chip).forEach(function(element) {
+        //     element.style.display = "none";
+        //   })
 
     });
 
@@ -160,11 +167,9 @@ var stand = document.getElementById("stand-button");
         document.getElementById("bank-amount").innerHTML = bankAmount + betAmount;
         player.bank = bankAmount + betAmount;
         document.getElementById("messages").innerHTML = "Pick the bet amount";
-        document.getElementById("bet-button").style.display = "none";
-        document.getElementById("cancel-button").style.display = "none";
-        Array.from(chip).forEach(function(element) {
-            element.style.display = "inline-block";
-          })
+        chipbuttons.style.display = "flex";
+        controlbuttons.style.display = "none";
+
     });
 
 
@@ -189,10 +194,10 @@ var stand = document.getElementById("stand-button");
             deck.dealCard(dealer);
         };
         // Can only deal once per game, disables deal button
-        document.getElementById("deal-button").style.display = 'none';
+        deal.style.display = "none";
         // Enable hit and stand button
-        document.getElementById("hit-button").style.display = "inline-block";
-        document.getElementById("stand-button").style.display = "inline-block";
+        hit.style.display = "";
+        stand.style.display = "";
     });
 
     // Deals one card to the player when hit button is clicked
@@ -204,8 +209,8 @@ var stand = document.getElementById("stand-button");
     // Start dealer's turn after stand button is clicked by player
     stand.addEventListener("click", function(){
         // Disable hit and stand button
-        document.getElementById("hit-button").style.display = 'none';
-        document.getElementById("stand-button").style.display = 'none';
+        hit.style.display = "none";
+        stand.style.display = "none";
         // Flip over deal's second card, hole card
         holeCard = document.getElementById("holeCard");
         holeCard.className = "animated flipInY";
@@ -234,8 +239,8 @@ var stand = document.getElementById("stand-button");
                 gameOver = true;
 
                 // Disable hit and stand button
-                document.getElementById("hit-button").style.display = 'none';
-                document.getElementById("stand-button").style.display = 'none';
+                hit.style.display = 'none';
+                stand.style.display = 'none';
             }
         }
 
@@ -304,18 +309,20 @@ var stand = document.getElementById("stand-button");
         document.getElementById("wins").innerHTML = player.wins;
         document.getElementById("totalhands").innerHTML = player.totalhands;
         // Control Buttons
-        document.getElementById("bet-button").style.display = "none";
-        document.getElementById("cancel-button").style.display = "none";
-        document.getElementById("deal-button").style.display = "none";
-        document.getElementById("hit-button").style.display = "none";
-        document.getElementById("stand-button").style.display = "none";
+        // document.getElementById("bet-button").style.display = "none";
+        // document.getElementById("cancel-button").style.display = "none";
+        // document.getElementById("deal-button").style.display = "none";
+        // document.getElementById("hit-button").style.display = "none";
+        // document.getElementById("stand-button").style.display = "none";
         document.getElementById("messages").innerHTML = "Pick the bet amount";
         document.getElementById("playerSection").style.display = "flex";
 
 
-        Array.from(chip).forEach(function(element){
-            element.style.display = "inline-block";
-        });
+        // Array.from(chip).forEach(function(element){
+        //     element.style.display = "";
+        // });
+        chipbuttons.style.display = "flex";
+        // document.getElementById("controlbuttons").style.display = "none";
     };
 
     // Clears table of cards from dealer and player

@@ -7,7 +7,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
     integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
     crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="style.css?v=84" type="text/css">
     <meta charset="utf-8">
     <title>Blackjack</title>
   </head>
@@ -51,15 +51,6 @@
         </div>
       </div>
 
-
-
-
-
-
-
-
-
-
       <div class="row">
         <div class="col playercontrols">
           <div class="rowhead playerstats">
@@ -83,7 +74,7 @@
 
 
             <div id="playerSection" class="playerSection col">
-              <div class="chips">
+              <div class="chips" id="chipbuttons">
                 <button class="chipButton" id="betVal-5" value="5"><img class="chip" src="images/chips/chip_5.png" alt="$5"></button>
                 <button class="chipButton" id="betVal-10" value="10"><img class="chip" src="images/chips/chip_10.png" alt="$10 chip"></button>
                 <button class="chipButton" id="betVal-25" value="25"><img class="chip" src="images/chips/chip_25.png" alt="$25"></button>
@@ -91,7 +82,7 @@
                 <button class="chipButton" id="betVal-100" value="100"><img class="chip" src="images/chips/chip_100.png" alt="$100"></button>
               </div>
 
-                <div class="controlButtons">
+                <div class="controlButtons" id="controlbuttons">
                   <button id="bet-button">Bet</button>
                   <button id="cancel-button">Cancel</button>
                   <button id="deal-button">Deal</button>
@@ -107,7 +98,6 @@
 
     </div>
 
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <script src="blackjack.js"></script>
 
   </body>
