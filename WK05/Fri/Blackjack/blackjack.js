@@ -1,182 +1,347 @@
-$('#deal-button').prop('disabled', true);
-$('#hit-button').prop('disabled', true);
-$('#stand-button').prop('disabled', true);
-var dealerhand;
-var playerhand;
-var deck = null;
-//need to switch to a better way to do this
-function generate_deck () {
-  var d = [
-  //clubs
-  {name: 'ace', points: 1, suit: 'clubs'},
-  {name: '2', points: 2, suit: 'clubs'},
-  {name: '3', points: 3, suit: 'clubs'},
-  {name: '4', points: 4, suit: 'clubs'},
-  {name: '5', points: 5, suit: 'clubs'},
-  {name: '6', points: 6, suit: 'clubs'},
-  {name: '7', points: 7, suit: 'clubs'},
-  {name: '8', points: 8, suit: 'clubs'},
-  {name: '9', points: 9, suit: 'clubs'},
-  {name: '10', points: 10, suit: 'clubs'},
-  {name: 'jack', points: 10, suit: 'clubs'},
-  {name: 'queen', points: 10, suit: 'clubs'},
-  {name: 'king', points: 10, suit: 'clubs'},
+document.addEventListener("DOMContentLoaded", function(){
 
-  //diamonds
-  {name: 'ace', points: 1, suit: 'diamonds'},
-  {name: '2', points: 2, suit: 'diamonds'},
-  {name: '3', points: 3, suit: 'diamonds'},
-  {name: '4', points: 4, suit: 'diamonds'},
-  {name: '5', points: 5, suit: 'diamonds'},
-  {name: '6', points: 6, suit: 'diamonds'},
-  {name: '7', points: 7, suit: 'diamonds'},
-  {name: '8', points: 8, suit: 'diamonds'},
-  {name: '9', points: 9, suit: 'diamonds'},
-  {name: '10', points: 10, suit: 'diamonds'},
-  {name: 'jack', points: 10, suit: 'diamonds'},
-  {name: 'queen', points: 10, suit: 'diamonds'},
-  {name: 'king', points: 10, suit: 'diamonds'},
+var deck;
 
-  //hearts
-  {name: 'ace', points: 1, suit: 'hearts'},
-  {name: '2', points: 2, suit: 'hearts'},
-  {name: '3', points: 3, suit: 'hearts'},
-  {name: '4', points: 4, suit: 'hearts'},
-  {name: '5', points: 5, suit: 'hearts'},
-  {name: '6', points: 6, suit: 'hearts'},
-  {name: '7', points: 7, suit: 'hearts'},
-  {name: '8', points: 8, suit: 'hearts'},
-  {name: '9', points: 9, suit: 'hearts'},
-  {name: '10', points: 10, suit: 'hearts'},
-  {name: 'jack', points: 10, suit: 'hearts'},
-  {name: 'queen', points: 10, suit: 'hearts'},
-  {name: 'king', points: 10, suit: 'hearts'},
+// blackjack buttons - bet, cancel, chip, deal, hit, stand
+var chip = document.getElementsByClassName("chipButton");
+var bet = document.getElementById("bet-button");
+var cancel = document.getElementById("cancel-button");
+var deal = document.getElementById("deal-button");
+var hit = document.getElementById("hit-button");
+var stand = document.getElementById("stand-button");
 
-  //spades
-  {name: 'ace', points: 1, suit: 'spades'},
-  {name: '2', points: 2, suit: 'spades'},
-  {name: '3', points: 3, suit: 'spades'},
-  {name: '4', points: 4, suit: 'spades'},
-  {name: '5', points: 5, suit: 'spades'},
-  {name: '6', points: 6, suit: 'spades'},
-  {name: '7', points: 7, suit: 'spades'},
-  {name: '8', points: 8, suit: 'spades'},
-  {name: '9', points: 9, suit: 'spades'},
-  {name: '10', points: 10, suit: 'spades'},
-  {name: 'jack', points: 10, suit: 'spades'},
-  {name: 'queen', points: 10, suit: 'spades'},
-  {name: 'king', points: 10, suit: 'spades'},
-  ];
+// ###########################
+// ######### CLASSES #########
+// ###########################
 
-  return d;
-};
+    // Create Person Class
+    class Person {
+        constructor (name){
+            this.name = name;
+            this.hand = [];
+            this.points = 0;
+            this.bet = 0;
+            this.bank = 500;
+            this.wins = 0;
+            this.totalhands = 0;
+        }
 
-function shuffleDeck(deck) {
-    for (var i = deck.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = deck[i];
-        deck[i] = deck[j];
-        deck[j] = temp;
+        // Calculates values of cards in hand
+        calculateHand(){
+            // Sorts cards highest to lowerst value
+            this.hand.sort(function(a, b){
+                return b.value - a.value;
+            });
+            // Calcute sum of cards in hand
+            this.points = this.hand.reduce(function(sum, card){
+            if (card.rank === "ace" && sum < 11){
+                return sum + 11;
+            };
+            return sum + card.value;
+            }, 0);
+            document.getElementById(`${this.name}-points`).innerHTML = this.points;
+        }
     };
-    return deck;
-};
 
-function calculatePoints(hand) {
-  var handPoints = 0;
-  for (var i=0; i < hand.length; i++) {
-    handPoints = handPoints + hand[i]['points'];
-  };
-  return handPoints;
-};
-function buttonDisable() {
-  $('#hit-button').prop('disabled', true);
-  $('#stand-button').prop('disabled', true);
-  $('#start-button').prop('disabled', false);
-};
-function bustCheck(hand, who) {
-  if (calculatePoints(hand) > 21) {
-    if (who == 'Dealer') {
-      $('#messages').html('<h2>Dealer went bust.</h2></br><h2>You won!</h2>');
-      buttonDisable();
-    }
-    else if (who == 'Player') {
-      $('#messages').html('<h2>You went bust.</h2></br><h2>Dealer won!</h2>');
-      buttonDisable();
+    // Create Card Class
+    class Card {
+        constructor (value, rank, suit){
+            this.value = value;
+            this.rank = rank;
+            this.suit = suit;
+        }
+
+        getCardImageURL(){
+            return `images/cards/${this.rank}_of_${this.suit}.png`
+        }
     };
-  };
-};
 
-function winnerCheck() {
-  if (calculatePoints(dealerhand) > calculatePoints(playerhand) && calculatePoints(dealerhand) <= 21) {
-    $('#messages').html('<h2>Dealer won!</h2>');
-    buttonDisable();
-  }
-  else if (calculatePoints(dealerhand) < calculatePoints(playerhand) && calculatePoints(playerhand) <= 21) {
-    $('#messages').html('<h2>You won!</h2>');
-    buttonDisable();
-  }
-  else if (calculatePoints(dealerhand) == calculatePoints(playerhand)) {
-    $('#messages').html('<h2>Push</h2>');
-    buttonDisable();
-  };
-};
+    // Create Deck Class
+    class Deck {
+        constructor (){
+            this.deckOfCards = [];
+        }
 
-$('#start-button').click(function () {
-  deck = generate_deck();
-  shuffleDeck(deck);
-  dealerhand = [];
-  playerhand = [];
-  $('#dealer-hand').empty();
-  $('#player-hand').empty();
-  $('#messages').empty();
-  $('#dealer-points').empty();
-  $('#player-points').empty();
-  $('#deal-button').prop('disabled', false);
-  $(this).prop('disabled', true);
-});
+        // Creates new deck of cards
+        createNewDeck(){
+            var suits = ['diamonds', 'clubs', 'hearts', 'spades'];
+            var ranks = ['ace', '2', '3', '4', '5', '6',
+                        '7', '8', '9', '10', 'jack', 'queen', 'king']
 
-$('#deal-button').click(function () {
-    for (var i = 0; i < 2; i++) {
-      $('#dealer-hand').append("<img src='images/"+deck[i]['name']+"_of_"+deck[i]['suit']+".png'>");
-      dealerhand.push(deck[i]);
-      deck.splice(i,1);
-      $('#dealer-points').text(calculatePoints(dealerhand));
-      bustCheck(dealerhand, 'Dealer');
+            // Create deck of cards, 52 cards in a deck
+            for (var i = 0; i < suits.length; i++){
+                for(var j = 0; j < ranks.length; j++){
+                    if (ranks[j] === "jack" || ranks[j] === "queen" || ranks[j]=== "king"){
+                        this.deckOfCards.push(new Card(10, ranks[j], suits[i]));
+                    }
+                    else {
+                        this.deckOfCards.push(new Card(j + 1, ranks[j], suits[i]));
+                    };
+                };
+            };
+        };
+
+        // Shuffle deck of cards
+        shuffle(){
+            for (let i = this.deckOfCards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [this.deckOfCards[i], this.deckOfCards[j]] = [this.deckOfCards[j], this.deckOfCards[i]];
+            };
+        }
+
+        dealCard(person){
+            let image = document.createElement("img");
+            // Retrieve card from deckOfCards
+            let card = deck.deckOfCards.pop();
+            // reshuffles deck if found empty
+            if (deck.deckOfCards.length === 0){
+                deck.createNewDeck();
+                deck.shuffle();
+            };
+            // Add card to hand
+            person.hand.push(card);
+            image.className = "animated slideInLeft"
+            // Hide Dealer's second card during initial deal
+            if (person.name === 'dealer' && person.hand.length === 2){
+                image.id = "holeCard";
+                image.src = `images/cards/deck_back.png`;
+            }
+            else {
+                image.src = card.getCardImageURL();
+                // Calculate points from cards in hand
+                person.calculateHand();
+            };
+            // Display card on table
+            document.getElementById(`${person.name}-hand`).appendChild(image);
+        }
     };
-    for (var i = 0; i < 2; i++) {
-      $('#player-hand').append("<img src='images/"+deck[i]['name']+"_of_"+deck[i]['suit']+".png'>");
-      playerhand.push(deck[i]);
-      deck.splice(i,1);
-      $('#player-points').text(calculatePoints(playerhand));
-      bustCheck(playerhand, 'Player');
+
+    startNewGame();
+
+// ###################################
+// ########## BUTTON EVENTS ##########
+// ###################################
+
+    // Set bet of player
+
+    Array.from(chip).forEach(function(element) {
+      element.addEventListener("click", function() {
+        document.getElementById("bet-button").style.display = "inline-block";
+        document.getElementById("cancel-button").style.display = "inline-block";
+        // document.getElementById("chipButtons").style.display = "none";
+        Array.from(chip).forEach(function(element){
+            element.style.display = "none";
+        });
+      })
+    });
+
+
+    bet.addEventListener("click", function(){
+        betAmount = parseInt(document.getElementById("bet-amount").innerHTML);
+        bankAmount = parseInt(document.getElementById("bank-amount").innerHTML);
+        player.bet = betAmount;
+        player.bank = bankAmount;
+        document.getElementById("bet-button").style.display = "none";
+        document.getElementById("cancel-button").style.display = "none";
+        document.getElementById("deal-button").style.display = "inline-block";
+        document.getElementById("messages").innerHTML = "Your bet amount: $" + player.bet;
+
+        Array.from(chip).forEach(function(element) {
+            element.style.display = "none";
+          })
+
+    });
+
+    // Allows player to cancel the bet, returns money to bank and set bet to zero
+    cancel.addEventListener("click", function(){
+        betAmount = parseInt(document.getElementById("bet-amount").innerHTML)
+        bankAmount = parseInt(document.getElementById("bank-amount").innerHTML)
+        document.getElementById("bet-amount").innerHTML = 0;
+        document.getElementById("bank-amount").innerHTML = bankAmount + betAmount;
+        player.bank = bankAmount + betAmount;
+        document.getElementById("messages").innerHTML = "Pick the bet amount";
+        document.getElementById("bet-button").style.display = "none";
+        document.getElementById("cancel-button").style.display = "none";
+        Array.from(chip).forEach(function(element) {
+            element.style.display = "inline-block";
+          })
+    });
+
+
+    // Receive value of chip when clicked on, update bank amount and betting amount
+    Array.from(chip).forEach(function(element){
+        element.addEventListener("click", function(){
+            chipValue = parseInt(element.value);
+            betAmount = parseInt(document.getElementById("bet-amount").innerHTML);
+            if (player.bank - chipValue >= 0){
+                player.bank -= chipValue;
+                document.getElementById("bank-amount").innerHTML = player.bank;
+                document.getElementById("bet-amount").innerHTML = betAmount + chipValue;
+            }
+        });
+    })
+
+    // Deals two cards to each player and dealer when deal button is clicked
+    deal.addEventListener("click", function(){
+        for (var i = 0; i < 2; i++){
+            // Adds  2 cards to player and dealer hand
+            deck.dealCard(player);
+            deck.dealCard(dealer);
+        };
+        // Can only deal once per game, disables deal button
+        document.getElementById("deal-button").style.display = 'none';
+        // Enable hit and stand button
+        document.getElementById("hit-button").style.display = "inline-block";
+        document.getElementById("stand-button").style.display = "inline-block";
+    });
+
+    // Deals one card to the player when hit button is clicked
+    hit.addEventListener("click", function(){
+        deck.dealCard(player);
+        gameResults(player);
+    });
+
+    // Start dealer's turn after stand button is clicked by player
+    stand.addEventListener("click", function(){
+        // Disable hit and stand button
+        document.getElementById("hit-button").style.display = 'none';
+        document.getElementById("stand-button").style.display = 'none';
+        // Flip over deal's second card, hole card
+        holeCard = document.getElementById("holeCard");
+        holeCard.className = "animated flipInY";
+        card = dealer.hand[1];
+        holeCard.src = card.getCardImageURL();
+        // Recalculate dealer's points
+        dealer.calculateHand();
+        while (dealer.points < 17){
+            deck.dealCard(dealer);
+        };
+        gameResults(dealer);
+    });
+
+// ###################################
+// ###### GAME HELPER FUNCTIONS ######
+// ###################################
+
+    // Outcome between player and dealer
+    function gameResults(currentPlayer){
+        let message = "";
+        let gameOver = false;
+        // During player's turn
+        if (currentPlayer.name === "player"){
+            if (player.points > 21){
+                message = "You Bust!"
+                gameOver = true;
+
+                // Disable hit and stand button
+                document.getElementById("hit-button").style.display = 'none';
+                document.getElementById("stand-button").style.display = 'none';
+            }
+        }
+
+        // During Dealer's turn
+        else if (currentPlayer.name === "dealer"){
+            if (player.points === 21 && player.hand.length === 2 && dealer.points !== 21){
+                message = "You Won! BLACKJACK!";
+                player.wins += 1;
+                player.bank += Math.round((player.bet * 1.5) + player.bet);
+            }
+            else if (dealer.points > 21) {
+                message = "Dealer Bust!"
+                player.wins += 1;
+                player.bank += player.bet * 2;
+            }
+            else if (player.points === dealer.points){
+                message = "Push";
+                player.bank += player.bet;
+            }
+            else if (player.points > dealer.points){
+                player.wins += 1;
+                message = "You Won!";
+                player.bank += player.bet * 2;
+            }
+            else {
+                message = "You Lost!";
+            }
+            gameOver = true;
+        }
+
+        document.getElementById("messages").innerHTML = message;
+        if (gameOver){
+            if (player.bank === 0){
+                document.getElementById("messages").innerHTML += " You are broke!";
+                setTimeout(function(){
+                    startNewGame();
+                }, 3000);
+            } else {
+                playAgain();
+            }
+        }
     };
-    $('#deal-button').prop('disabled', true);
-    $('#hit-button').prop('disabled', false);
-    $('#stand-button').prop('disabled', false);
-});
 
-$('#hit-button').click(function () {
-  for (var i = 0; i < 1; i++) {
-    $('#player-hand').append("<img src='images/"+deck[i]['name']+"_of_"+deck[i]['suit']+".png'>");
-    playerhand.push(deck[i]);
-    deck.splice(i,1);
-    $('#player-points').text(calculatePoints(playerhand));
-    bustCheck(playerhand, 'Player');
-
-  };
-});
-
-$('#stand-button').click(function () {
-  $('#hit-button').prop('disabled', true);
-  $('#stand-button').prop('disabled', true);
-  while (calculatePoints(dealerhand) < 18) {
-    for (var i = 0; i < 1; i++) {
-      $('#dealer-hand').append("<img src='images/"+deck[i]['name']+"_of_"+deck[i]['suit']+".png'>");
-      dealerhand.push(deck[i]);
-      deck.splice(i,1);
-      $('#dealer-points').text(calculatePoints(dealerhand));
-      bustCheck(dealerhand, 'Dealer');
-      winnerCheck();
+    // Restarts with a new game in current player session
+    function playAgain(){
+        // Reset bet amount, player hand, player points, and new dealer
+        player.hand = [];
+        player.bet = 0;
+        player.points = 0;
+        player.totalhands += 1;
+        dealer = new Person("dealer");
+        // Delay table being cleared
+        setTimeout(function(){
+            displayGameInfo();
+            clearTable();
+        }, 3000);
     };
-  };
-});
+
+    // Displays game info and displays betting buttons
+    function displayGameInfo(){
+        // Game Stats
+        document.getElementById("dealer-points").innerHTML = dealer.points;
+        document.getElementById("player-points").innerHTML = player.points;
+        document.getElementById("bet-amount").innerHTML = player.bet;
+        document.getElementById("bank-amount").innerHTML = player.bank;
+        document.getElementById("wins").innerHTML = player.wins;
+        document.getElementById("totalhands").innerHTML = player.totalhands;
+        // Control Buttons
+        document.getElementById("bet-button").style.display = "none";
+        document.getElementById("cancel-button").style.display = "none";
+        document.getElementById("deal-button").style.display = "none";
+        document.getElementById("hit-button").style.display = "none";
+        document.getElementById("stand-button").style.display = "none";
+        document.getElementById("messages").innerHTML = "Pick the bet amount";
+        document.getElementById("playerSection").style.display = "flex";
+
+
+        Array.from(chip).forEach(function(element){
+            element.style.display = "inline-block";
+        });
+    };
+
+    // Clears table of cards from dealer and player
+    function clearTable(){
+        playerNode = document.getElementById("player-hand");
+        dealerNode = document.getElementById("dealer-hand");
+        if (playerNode.hasChildNodes()){
+            while (playerNode.firstChild){
+                playerNode.removeChild(playerNode.firstChild);
+            };
+            while (dealerNode.firstChild){
+                dealerNode.removeChild(dealerNode.firstChild);
+            };
+        };
+        document.getElementById("messages").innerHTML = "Pick the bet amount";
+    };
+
+    // Start a complete new game session
+    function startNewGame(){
+        player = new Person("player");
+        dealer = new Person("dealer");
+        deck = new Deck();
+        deck.createNewDeck();
+        deck.shuffle();
+        clearTable();
+        displayGameInfo();
+    };
+
+}) // End of DOM

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1 initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
+    crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" type="text/css">
     <meta charset="utf-8">
     <title>Blackjack</title>
@@ -13,28 +17,16 @@
 
       <div class="row tophead">
 
-        <div id="topleft" class="col-md-4 text-center buttons">
-            <button id="deal-button" class="btn btn-primary">Deal</button>
-            <button id="hit-button" class="btn btn-secondary">Hit</button>
-            <button id="stand-button" class="btn btn-info">Stand</button>
-        </div>
-
-        <div id="topcenter" class="col-md-4 text-center">
-          <button id="start-button" class="btn btn-warning"><h2>Start a new game</h2></button>
-        </div>
-
-        <div id="messages" class="col-md-4 text-center">
-
-        </div>
-
+            <span id="messages" class="text-center">
+              <!-- Game messages show up here -->
+            </span>
       </div>
 
 
       <div class="row">
         <div class="col playarea">
           <div class="rowhead text-center">
-            <label><strong>Dealer: </strong></label>
-            <label id="dealer-points" class="points"></label>
+            <label><strong>Dealer Hand: </strong><span id="dealer-points" class="points"></span></label>
           </div>
 
           <div id="dealer-hand" class="hand">
@@ -47,8 +39,10 @@
         <div class="col playarea">
 
           <div class="rowhead text-center">
-            <label><strong>Player: </strong></label>
-            <label id="player-points" class="points"></label>
+            <div>
+              <label><strong>Player Hand: </strong><span id="player-points" class="points"></span></label>
+
+            </div>
           </div>
 
           <div id="player-hand" class="hand">
@@ -59,9 +53,61 @@
 
 
 
+
+
+
+
+
+
+
+      <div class="row">
+        <div class="col playercontrols">
+          <div class="rowhead playerstats">
+              <span>
+                <label><strong>Bet: </strong>$<span id="bet-amount" class="bet"></span></label>
+              </span>
+              <span>
+                <label><strong>Total: </strong>$<span id="bank-amount" class="bank"></span></label>
+
+              </span>
+
+             <span>
+               <label><strong>Won: </strong><span id="wins" class="wins"></span></label>
+
+             </span>
+             <span>
+               <label><strong>Played: </strong><span id="totalhands" class="totalhands"></span></label>
+
+             </span>
+          </div>
+
+
+            <div id="playerSection" class="playerSection col">
+              <div class="chips">
+                <button class="chipButton" id="betVal-5" value="5"><img class="chip" src="images/chips/chip_5.png" alt="$5"></button>
+                <button class="chipButton" id="betVal-10" value="10"><img class="chip" src="images/chips/chip_10.png" alt="$10 chip"></button>
+                <button class="chipButton" id="betVal-25" value="25"><img class="chip" src="images/chips/chip_25.png" alt="$25"></button>
+                <button class="chipButton" id="betVal-50" value="50"><img class="chip" src="images/chips/chip_50.png" alt="$50"></button>
+                <button class="chipButton" id="betVal-100" value="100"><img class="chip" src="images/chips/chip_100.png" alt="$100"></button>
+              </div>
+
+                <div class="controlButtons">
+                  <button id="bet-button">Bet</button>
+                  <button id="cancel-button">Cancel</button>
+                  <button id="deal-button">Deal</button>
+                  <button id="hit-button">Hit</button>
+                  <button id="stand-button">Stand</button>
+                </div>
+            </div>
+
+
+        </div>
+      </div>
+
+
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <script src="blackjack.js"></script>
 
   </body>
